@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trade Predictor</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <!-- Chart -->
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+
+<div id="auth-container">
+    <div class="auth-box">
+        <h2>AI TRADING LOGIN</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <button onclick="signup()" class="secondary-btn">Sign Up</button>
+        <p id="auth-msg"></p>
+    </div>
+</div>
+
+<div id="dashboard" style="display:none;">
+    <nav>
+        <div class="logo">AI PREDICTOR</div>
+        <div class="user-info">
+            <span id="username-display">User</span>
+            <span class="balance">Demo: $<span id="demo-balance">10000</span></span>
+            <button onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+    </nav>
+
+    <div class="signal-container">
+        <h3>AI SIGNAL ANALYSIS</h3>
+        <div class="signal-box" id="signal-box">Analyzing...</div>
+        <div class="confidence-meter">
+            <span>Accuracy: <b id="accuracy-text">0%</b></span>
+            <div class="bar"><div id="accuracy-bar"></div></div>
+        </div>
+    </div>
+
+    <div id="chart-container"></div>
+
+    <div class="trade-controls">
+        <button class="btn-up" onclick="placeTrade('UP')">CALL (UP)</button>
+        <button class="btn-down" onclick="placeTrade('DOWN')">PUT (DOWN)</button>
+    </div>
+
+    <button class="chat-btn" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
+
+    <div id="chat-box" class="chat-box hidden">
+        <div class="chat-header">Support <span onclick="toggleChat()">X</span></div>
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Type message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
